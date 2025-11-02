@@ -1,0 +1,8 @@
+Neutral filename & folder suggestions:
+- notes-7/
+- files-2025/
+- ref-notes/
+- lists-archive/
+- docs-set-7/
+
+To use: rename the unzipped folder and its index.html path to something inconspicuous, e.g. "notes-7/index.html".
