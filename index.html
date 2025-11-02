@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="assets/favicon.png" type="image/png" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quiet Journal</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Quiet Journal</div>
+  <nav class="nav">
+    <button data-view="home">Home</button>
+    <button data-view="checkin">Daily Check‑In</button>
+    <button data-view="patterns">Pattern Tracker</button>
+    <button data-view="truths">Truth Statements</button>
+    <button data-view="plan">Stability Plan</button>
+    <button data-view="resources">Resources</button>
+  </nav>
+  <div class="right"><span id="backupReminder" class="backup muted hidden" title="Export encrypted backup to clear this reminder."></span>
+    
+    <button id="printPage">Print</button>
+    <button id="panicMask" class="warn">Mask</button>
+    <button id="quickExit" class="danger">Quick Exit</button>
+  </div>
+</header>
+
+<main>
+<section id="authView">
+  <h2>Private Vault</h2>
+  <p>Create a passphrase (first time) or enter your passphrase to unlock. Your notes are encrypted in your browser with your passphrase. If you forget it, your encrypted notes cannot be recovered.</p>
+  <input id="passphrase" type="password" placeholder="Passphrase" />
+  <button id="unlockBtn">Unlock</button>
+  <p id="authMsg" class="muted"></p>
+</section>
+
+<section id="homeView" class="view hidden">
+  <h2>Welcome</h2>
+  <p>This is a quiet space for recovery notes and patterns. Everything you save is encrypted locally in this browser. You can export your vault at any time.</p>
+  <div class="actions">
+    <button id="exportBtn">Export Encrypted Backup</button>
+    <input type="file" id="importFile" accept=".qrk" />
+    <label for="importFile" class="btn">Import Encrypted Backup</label>
+  </div>
+  <details>
+    <summary>How it works (simple)</summary>
+    <ul>
+      <li>Your passphrase derives a key in your browser (PBKDF2, AES‑GCM).</li>
+      <li>Data is stored encrypted in localStorage on this device/profile.</li>
+      <li>Use Quick Exit or press ESC to hide content instantly.</li>
+    </ul>
+  </details>
+</section>
+
+<section id="checkinView" class="view hidden">
+  <h2>Daily Check‑In</h2><button id="printCheckinSection" class="btn">Print this page</button>
+  <form id="checkinForm">
+    <label>Date <input type="date" id="ciDate" /></label>
+    <label>What gave me peace today?<textarea id="ciPeace"></textarea></label>
+    <label>What drained me?<textarea id="ciDrain"></textarea></label>
+    <label>What did I do right?<textarea id="ciRight"></textarea></label>
+    <button type="submit">Save Check‑In</button>
+  </form>
+  <h3>Check‑In History</h3>
+  <ul id="checkinList" class="list"></ul>
+</section>
+
+<section id="patternsView" class="view hidden">
+  <h2>Pattern Tracker</h2><button id="printPatternSection" class="btn">Print this page</button>
+  <form id="patternForm">
+    <label>Title <input id="ptTitle" placeholder="e.g., Guilt after setting a boundary" /></label>
+    <label>What happened?<textarea id="ptWhat"></textarea></label>
+    <label>Body signals (where did I feel it?)<textarea id="ptBody"></textarea></label>
+    <label>Story I tell myself (old lie)<textarea id="ptLie"></textarea></label>
+    <label>New truth I’m practicing<textarea id="ptTruth"></textarea></label>
+    <button type="submit">Save Pattern</button>
+  </form>
+  <h3>My Patterns</h3>
+  <ul id="patternList" class="list"></ul>
+</section>
+
+<section id="truthsView" class="view hidden">
+  <h2>Truth Statements</h2><button id="printTruthSection" class="btn">Print this page</button>
+  <form id="truthForm">
+    <label>New truth<input id="trText" placeholder="I don’t need permission to heal." /></label>
+    <button type="submit">Add</button>
+  </form>
+  <ul id="truthList" class="chips"></ul>
+</section>
+
+<section id="planView" class="view hidden">
+  <h2>Stability Plan</h2><button id="printPlanSection" class="btn">Print this page</button>
+  <p>Keep this simple and current.</p>
+  <label>Safe people (first names only)<textarea id="spPeople"></textarea></label>
+  <label>Grounding steps (breath, walk, prayer, call)<textarea id="spSteps"></textarea></label>
+  <label>Code word / phrase<input id="spCode" /></label>
+  <label>Meeting rhythm (CR / NA / AA / church)<textarea id="spMeet"></textarea></label>
+  <button id="savePlan">Save Plan</button>
+</section>
+
+<section id="resourcesView" class="view hidden">
+  <h2>Resources</h2>
+  <ul class="muted">
+    <li><a href="assets/When_Peace_Feels_Like_Trouble.pdf" target="_blank" rel="noopener">When Peace Feels Like Trouble — 5×7 card (PDF)</a></li>
+    <li>Breath: In 4 • Hold 2 • Out 6 — repeat 4x</li>
+    <li>Psalm 46:10 — Be still and know that I am God.</li>
+    <li>3 Questions daily: Peace? • Drain? • What I did right?</li>
+  </ul>
+</section>
+
+<section id="groceryMask" class="gmask hidden">
+  <h2>Grocery List</h2>
+  <ul>
+    <li>Milk</li>
+    <li>Eggs</li>
+    <li>Bread</li>
+    <li>Apples</li>
+    <li>Chicken</li>
+  </ul>
+  <p class="muted">Tap anywhere to hide.</p>
+</section>
+</main>
+
+<footer class="foot">
+  <span class="muted">Quiet Recovery Kit — local & encrypted</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
